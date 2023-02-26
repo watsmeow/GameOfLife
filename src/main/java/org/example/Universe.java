@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Universe {
@@ -15,22 +14,15 @@ public class Universe {
         populateUniverse();
     }
 
-    //    A live cell dies if it has fewer than two live neighbors.
-    //    A live cell with two or three live neighbors lives on to the next generation.
-    //    A live cell with more than three live neighbors dies.
-    //    A dead cell will be brought back to life if it has exactly three live neighbors.
-
     public void runTheUniverse() {
         for (int i = 0; i < 100; i++) {
             this.updatedUniverse = this.universe.clone();
             for (int x = 0; x < universe.length; x++) {
                 for (int y = 0; y < universe[x].length; y++) {
-                    if (isCellAlive(x, y) && howManyNeighborsAreAlive(x, y) < 2 ||
-                            isCellAlive(x, y) && howManyNeighborsAreAlive(x, y) > 3) {
+                    if (isCellAlive(x, y) && howManyNeighborsAreAlive(x, y) < 2 || isCellAlive(x, y) && howManyNeighborsAreAlive(x, y) > 3) {
                         this.updatedUniverse[x][y] = " ";
                     }
-                    if (isCellAlive(x, y) && howManyNeighborsAreAlive(x, y) == 2 ||
-                            isCellAlive(x, y) && howManyNeighborsAreAlive(x, y) == 3) {
+                    if (isCellAlive(x, y) && howManyNeighborsAreAlive(x, y) == 2 || isCellAlive(x, y) && howManyNeighborsAreAlive(x, y) == 3) {
                         this.updatedUniverse[x][y] = "x";
                     }
                     if (!isCellAlive(x, y) && howManyNeighborsAreAlive(x, y) == 3) {
@@ -45,29 +37,29 @@ public class Universe {
 
     private int howManyNeighborsAreAlive(int coordOne, int coordTwo) {
         int aliveNeighbors = 0;
-        if (isNeighborAlive(coordOne -1, coordTwo)) {
-            aliveNeighbors +=1;
+        if (isNeighborAlive(coordOne - 1, coordTwo)) {
+            aliveNeighbors += 1;
         }
-        if (isNeighborAlive(coordOne, coordTwo -1)) {
-            aliveNeighbors +=1;
+        if (isNeighborAlive(coordOne, coordTwo - 1)) {
+            aliveNeighbors += 1;
         }
-        if (isNeighborAlive(coordOne +1, coordTwo)) {
-            aliveNeighbors +=1;
+        if (isNeighborAlive(coordOne + 1, coordTwo)) {
+            aliveNeighbors += 1;
         }
-        if (isNeighborAlive(coordOne, coordTwo +1)) {
-            aliveNeighbors +=1;
+        if (isNeighborAlive(coordOne, coordTwo + 1)) {
+            aliveNeighbors += 1;
         }
-        if (isNeighborAlive(coordOne -1, coordTwo -1)) {
-            aliveNeighbors +=1;
+        if (isNeighborAlive(coordOne - 1, coordTwo - 1)) {
+            aliveNeighbors += 1;
         }
-        if (isNeighborAlive(coordOne +1, coordTwo +1)) {
-            aliveNeighbors +=1;
+        if (isNeighborAlive(coordOne + 1, coordTwo + 1)) {
+            aliveNeighbors += 1;
         }
-        if (isNeighborAlive(coordOne -1, coordTwo +1)) {
-            aliveNeighbors +=1;
+        if (isNeighborAlive(coordOne - 1, coordTwo + 1)) {
+            aliveNeighbors += 1;
         }
-        if (isNeighborAlive(coordOne +1, coordTwo -1)) {
-            aliveNeighbors +=1;
+        if (isNeighborAlive(coordOne + 1, coordTwo - 1)) {
+            aliveNeighbors += 1;
         }
         return aliveNeighbors;
     }
@@ -81,7 +73,7 @@ public class Universe {
     }
 
     private boolean isNeighborAlive(int coordOne, int coordTwo) {
-        if (coordOne < 0 || coordOne > this.universe.length -1 || coordTwo < 0 || coordTwo > this.universe.length -1) {
+        if (coordOne < 0 || coordOne > this.universe.length - 1 || coordTwo < 0 || coordTwo > this.universe.length - 1) {
             return false;
         }
         if (universe[coordOne][coordTwo].equals("x")) {
